@@ -11,7 +11,7 @@
     overflow-y: auto;
     background: white;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 15px;
   }
   
   .message {
@@ -35,7 +35,6 @@
   
   .chat-input-container {
     display: flex;
-    gap: 10px;
     padding: 15px;
     border-top: 1px solid #dedede;
   }
@@ -48,6 +47,7 @@
   }
   
   .model-selector {
+    margin-right: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ced4da;
@@ -60,7 +60,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
   }
   
   .send-button:hover {

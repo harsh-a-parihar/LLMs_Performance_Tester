@@ -1,94 +1,107 @@
 .sidebar {
     width: 280px;
     background: #1e1e2e;
-    color: #ffffff;
+    color: white;
     display: flex;
     flex-direction: column;
     transition: width 0.3s ease;
-    overflow: hidden;
+    border-right: 1px solid #2d2d40;
   }
   
   .sidebar.collapsed {
-    width: 80px;
+    width: 60px;
   }
   
   .sidebar-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
+    padding: 10px 15px;
     border-bottom: 1px solid #2d2d40;
   }
   
-  .toggle-button {
+  .icon-button {
     background: none;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
   }
   
-  .search-bar {
-    width: 100%;
-    padding: 8px;
-    background: #2d2d40;
-    border: none;
-    border-radius: 5px;
+  .new-chat-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #3b3b5a;
     color: white;
-    font-size: 14px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .new-chat-button:hover {
+    background: #505073;
+  }
+  
+  .section {
+    margin: 15px;
+    padding: 10px;
+    background: #29293f;
+    border-radius: 5px;
   }
   
   .section-title {
     font-size: 14px;
-    margin: 15px 15px 5px;
     text-transform: uppercase;
     font-weight: bold;
     color: #a1a1b2;
+    margin-bottom: 10px;
   }
   
   .sidebar-button {
-    width: calc(100% - 30px);
-    margin: 5px auto;
+    width: 100%;
+    margin: 5px 0;
     padding: 10px;
-    background: #29293f;
+    background: #3b3b5a;
     color: white;
     border: none;
     border-radius: 5px;
-    text-align: left;
+    text-align: center;
     font-size: 14px;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .sidebar-button:hover {
-    background: #3b3b5a;
+    background: #505073;
   }
   
   .recent-chats {
     list-style: none;
-    padding: 0 15px;
+    padding: 0;
   }
   
   .chat-item {
     padding: 10px;
     margin: 5px 0;
-    background: #29293f;
+    background: #3b3b5a;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .chat-item:hover {
-    background: #3b3b5a;
+    background: #505073;
   }
   
   .file-input {
-    margin: 10px 15px;
-    padding: 8px;
-    background: #2d2d40;
+    width: 100%;
+    padding: 5px;
+    background: #3b3b5a;
     border: none;
     border-radius: 5px;
     color: white;
     font-size: 14px;
-    cursor: pointer;
   }

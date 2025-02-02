@@ -13,69 +13,38 @@ const NewChat = () => {
   const [recentChats, setRecentChats] = useState([]);
 
   useEffect(() => {
-    // Fetch chat history on component mount
     axios
-      .get("http://localhost:5000/api/history")
-      .then((res) => {
-        const chatTitles = res.data.map((chat) => chat.question);
-        setRecentChats(chatTitles.slice(-5)); // Show only the last 5 recent chats
-      })
-      .catch((err) => console.error("Error fetching history:", err));
+      .get("/api/history")
+      .then((res) => setRecentChats(res.data.map((chat) => chat.question)))
+      .catch((err) => console.error(err));
   }, []);
 
   const askModel = async () => {
-    if (!question.trim()) {
-      alert("Please enter a question!");
-      return;
-    }
-
+    if (!question.trim()) return alert("Please enter a question!");
     setLoading(true);
-    setResponse("");
+    const userMessage = { sender: "user", text: question };
+    setMessages((prev) => [...prev, userMessage]);
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/query",
-        { question, model },
-        { headers: { "Content-Type": "application/json" } }
-      );
-
-      const modelResponse = res.data.response;
-
-      // Update messages with the model's response
-      setMessages((prev) => [
-        ...prev,
-        { sender: "model", text: modelResponse },
-      ]);
-
-      // Add the question to recent chats
-      setRecentChats((prev) => [...prev, question].slice(-5)); // Keep only the last 5 chats
-    } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
-      alert("Failed to get response from backend!");
+      const res = await axios.post("/api/query", { question, model });
+      setMessages((prev) => [...prev, { sender: "model", text: res.data.response }]);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDocumentUpload = (file) => {
-    console.log("Uploaded file:", file);
-  };
-
-  const handleSelectChat = (chat) => {
-    setMessages([{ sender: "user", text: chat }]);
-    setQuestion(chat);
-    askModel();
+  const handleNewChat = () => {
+    setMessages([]);
+    setQuestion("");
   };
 
   return (
     <div className="new-chat-container">
       <Sidebar
-        onDocumentUpload={handleDocumentUpload}
+        onDocumentUpload={(file) => console.log("Uploaded file:", file)}
         recentChats={recentChats}
-        onSelectChat={handleSelectChat}
+        onSelectChat={(chat) => setQuestion(chat)}
+        onNewChat={handleNewChat}
       />
       <ChatInterface
         askModel={askModel}
@@ -86,7 +55,6 @@ const NewChat = () => {
         setModel={setModel}
         model={model}
         messages={messages}
-        setMessages={setMessages}
       />
     </div>
   );
