@@ -1,0 +1,15 @@
+.new-chat-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .chat-interface {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }

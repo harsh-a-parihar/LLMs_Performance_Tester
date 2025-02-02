@@ -77,7 +77,7 @@ async function queryModel(model, question) {
         return `Model '${model}' is not supported.`;
     }
 
-    const API_URL = "http://127.0.0.1:11434/api/generate";  // Ollama API endpoint
+    const API_URL = "http://127.0.0.1:11504/api/generate";  // Ollama API endpoint
     const headers = { "Content-Type": "application/json" };
     const payload = {
         model: MODEL_API_MAP[model],
